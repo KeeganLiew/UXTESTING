@@ -5,7 +5,141 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UX Research Card Sorting Exercise</title>
   <style>
-    /* ... your existing CSS ... */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+    :root {
+      --accent-color: #007bff;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --border-color: #e0e0e0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px 0;
+    }
+    .column {
+      flex: 1 1 250px;
+      min-width: 250px;
+      max-width: calc(100% - 40px);
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .column h2 {
+      margin-top: 0;
+      padding: 10px 0;
+      color: var(--accent-color);
+      font-weight: 500;
+      border-bottom: 2px solid var(--accent-color);
+    }
+    .card {
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 10px;
+      cursor: move;
+      position: relative;
+      transition: box-shadow 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .card .delete-btn, .column .delete-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: transparent;
+      color: #999;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .card .delete-btn:hover, .column .delete-btn:hover {
+      color: #ff4136;
+    }
+    .controls {
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .primary-btn {
+      padding: 10px 15px;
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: 500;
+    }
+    .primary-btn:hover {
+      background-color: #0056b3;
+    }
+    .secondary-btn {
+      padding: 10px 15px;
+      background-color: transparent;
+      color: var(--accent-color);
+      border: 2px solid var(--accent-color);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    .secondary-btn:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+    h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      color: var(--accent-color);
+      font-weight: 300;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    #analysisContainer {
+      margin-top: 30px;
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .chart-container {
+      width: 100%;
+      height: 600px;
+    }
+    @media (max-width: 600px) {
+      .column {
+        flex-basis: 100%;
+      }
+    }
+    input[type="text"] {
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    #userName {
+      padding-left: 15px;
+      padding-right: 15px;
+      border-color: #e0e0e0;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1.1.1/dist/chartjs-chart-matrix.min.js"></script>
@@ -15,160 +149,6 @@
 
   <input type="text" id="userName" placeholder="Enter your name">
   <button id="startExercise" class="primary-btn">Start Exercise</button> 
-
-  <div id="exerciseContent" style="display: none;">
-    </div>
-
-  <script>
-    // ... your existing JavaScript ... 
-  </script>
-</body>
-</html><html><head><base href="blob:https://party.websim.ai/862c6da5-0f3e-4c05-89fe-5efb01df2eef">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UX Research Card Sorting Exercise</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
-  :root {
-    --accent-color: #007bff;
-    --bg-color: #f8f9fa;
-    --card-bg: #ffffff;
-    --text-color: #333333;
-    --border-color: #e0e0e0;
-  }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-  }
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px 0;
-  }
-  .column {
-    flex: 1 1 250px;
-    min-width: 250px;
-    max-width: calc(100% - 40px);
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    position: relative;
-    margin-bottom: 20px;
-  }
-  .column h2 {
-    margin-top: 0;
-    padding: 10px 0;
-    color: var(--accent-color);
-    font-weight: 500;
-    border-bottom: 2px solid var(--accent-color);
-  }
-  .card {
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 12px;
-    margin-bottom: 10px;
-    cursor: move;
-    position: relative;
-    transition: box-shadow 0.3s ease;
-  }
-  .card:hover {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  .card .delete-btn, .column .delete-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: transparent;
-    color: #999;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  .card .delete-btn:hover, .column .delete-btn:hover {
-    color: #ff4136;
-  }
-  .controls {
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .primary-btn {
-    padding: 10px 15px;
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-weight: 500;
-  }
-  .primary-btn:hover {
-    background-color: #0056b3;
-  }
-  .secondary-btn {
-    padding: 10px 15px;
-    background-color: transparent;
-    color: var(--accent-color);
-    border: 2px solid var(--accent-color);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-  }
-  .secondary-btn:hover {
-    background-color: var(--accent-color);
-    color: white;
-  }
-  h1 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    color: var(--accent-color);
-    font-weight: 300;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-  }
-  #analysisContainer {
-    margin-top: 30px;
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  .chart-container {
-    width: 100%;
-    height: 600px;
-  }
-  @media (max-width: 600px) {
-    .column {
-      flex-basis: 100%;
-    }
-  }
-  input[type="text"] {
-    padding: 10px 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  #userName {
-    padding-left: 15px;
-    padding-right: 15px;
-    border-color: #e0e0e0;
-  }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1.1.1/dist/chartjs-chart-matrix.min.js"></script>
-</head>
-<body>
-  <h1>UX Research Card Sorting Exercise</h1>
 
   <div id="exerciseContent" style="display: none;">
     <div class="controls">
@@ -197,361 +177,4 @@
       <div class="column">
         <h2>Employment Details</h2>
         <button class="delete-btn">×</button>
-      </div>
-      <div class="column">
-        <h2>Personal Details</h2>
-        <button class="delete-btn">×</button>
-      </div>
-      <div class="column">
-        <h2>Financial Info</h2>
-        <button class="delete-btn">×</button>
-      </div>
-      <div class="column">
-        <h2>KiwiSaver</h2>
-        <button class="delete-btn">×</button>
-      </div>
-      <div class="column">
-        <h2>Leave</h2>
-        <button class="delete-btn">×</button>
-      </div>
-    </div>
-  
-    <div id="analysisContainer" style="display: none;">
-      <h2>Statistical Analysis</h2>
-      <div class="chart-container">
-        <canvas id="heatmapChart"></canvas>
-      </div>
-    </div>
-  </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-  const userName = document.getElementById('userName');
-  const startExerciseBtn = document.getElementById('startExercise');
-  const exerciseContent = document.getElementById('exerciseContent');
-  const container = document.getElementById('container');
-  const addCardBtn = document.getElementById('addCard');
-  const addColumnBtn = document.getElementById('addColumn');
-  const saveChoicesBtn = document.getElementById('saveChoices');
-  const exportResultsBtn = document.getElementById('exportResults');
-  const showAnalysisBtn = document.getElementById('showAnalysis');
-  const cardPool = document.getElementById('cardPool');
-  const analysisContainer = document.getElementById('analysisContainer');
-
-  let draggedItem = null;
-  let userChoices = [];
-
-  startExerciseBtn.onclick = function() {
-    if (userName.value.trim() !== '') {
-      exerciseContent.style.display = 'block';
-      this.disabled = true;
-      userName.disabled = true;
-    } else {
-      alert('Please enter your name to start the exercise.');
-    }
-  };
-
-  function createCard(text = 'New Card') {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.draggable = true;
-    card.textContent = text;
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'delete-btn';
-    deleteBtn.textContent = '×';
-    deleteBtn.onclick = function(e) {
-      e.stopPropagation();
-      card.remove();
-    };
-
-    card.appendChild(deleteBtn);
-    
-    card.addEventListener('dragstart', function() {
-      draggedItem = card;
-      setTimeout(() => (this.style.opacity = '0.5'), 0);
-    });
-
-    card.addEventListener('dragend', function() {
-      setTimeout(() => (this.style.opacity = ''), 0);
-      draggedItem = null;
-    });
-
-    return card;
-  }
-
-  function createColumn(title = 'New Column') {
-    const column = document.createElement('div');
-    column.className = 'column';
-    
-    const heading = document.createElement('h2');
-    heading.textContent = title;
-    column.appendChild(heading);
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'delete-btn';
-    deleteBtn.textContent = '×';
-    deleteBtn.onclick = function() {
-      column.remove();
-    };
-    column.appendChild(deleteBtn);
-
-    column.addEventListener('dragover', function(e) {
-      e.preventDefault();
-      this.style.boxShadow = '0 4px 8px rgba(0, 123, 255, 0.5)';
-    });
-
-    column.addEventListener('dragleave', function() {
-      this.style.boxShadow = '';
-    });
-
-    column.addEventListener('drop', function(e) {
-      e.preventDefault();
-      if (draggedItem) {
-        this.appendChild(draggedItem);
-      }
-      this.style.boxShadow = '';
-    });
-
-    return column;
-  }
-
-  addCardBtn.onclick = function() {
-    const cardText = prompt('Enter card text:');
-    if (cardText) {
-      cardPool.appendChild(createCard(cardText));
-    }
-  };
-
-  addColumnBtn.onclick = function() {
-    const columnTitle = prompt('Enter column title:');
-    if (columnTitle) {
-      container.appendChild(createColumn(columnTitle));
-    }
-  };
-
-  saveChoicesBtn.onclick = function() {
-    const choices = {};
-    document.querySelectorAll('.column').forEach(column => {
-      const columnTitle = column.querySelector('h2').textContent;
-      choices[columnTitle] = Array.from(column.querySelectorAll('.card')).map(card => card.textContent.trim());
-    });
-    userChoices.push(choices);
-
-    const emailContent = `
-      User Name: ${userName.value}
-      
-      Groupings and Columns:
-      ${Object.entries(choices).map(([column, cards]) => 
-        `${column}:\n${cards.join('\n')}`
-      ).join('\n\n')}
-    `;
-
-    console.log('Sending email to hamish.baxter@datacom.com');
-    console.log('Email content:', emailContent);
-
-    alert('Choices saved and email sent successfully!');
-  };
-
-  function exportResults() {
-    const choices = {};
-    document.querySelectorAll('.column').forEach(column => {
-      const columnTitle = column.querySelector('h2').textContent;
-      choices[columnTitle] = Array.from(column.querySelectorAll('.card')).map(card => card.textContent.trim());
-    });
-
-    const htmlContent = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card Sorting Results</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
-        h1 { color: #007bff; }
-        h2 { color: #333; }
-        ul { padding-left: 20px; }
-    </style>
-</head>
-<body>
-    <h1>Card Sorting Results</h1>
-    <p>User: ${userName.value}</p>
-    ${Object.entries(choices).map(([column, cards]) => `
-        <h2>${column}</h2>
-        <ul>
-            ${cards.map(card => `<li>${card}</li>`).join('')}
-        </ul>
-    `).join('')}
-</body>
-</html>
-    `;
-
-    const blob = new Blob([htmlContent], { type: 'text/html' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'card_sorting_results.html';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }
-
-  exportResultsBtn.onclick = exportResults;
-
-  showAnalysisBtn.onclick = function() {
-    if (userChoices.length === 0) {
-      alert('No data available for analysis. Please save choices first.');
-      return;
-    }
-    updateAnalysis();
-    analysisContainer.style.display = 'block';
-  };
-
-  function updateAnalysis() {
-    const correlationData = calculateConfidence();
-    renderHeatmapChart(correlationData);
-  }
-
-  function calculateConfidence() {
-    const cardCorrelations = {};
-    const cardList = [];
-    let totalUsers = userChoices.length;
-
-    userChoices.forEach(choice => {
-      Object.values(choice).forEach(cards => {
-        cards.forEach(card => {
-          if (!cardList.includes(card)) {
-            cardList.push(card);
-          }
-          cards.forEach(otherCard => {
-            if (card !== otherCard) {
-              if (!cardCorrelations[card]) {
-                cardCorrelations[card] = {};
-              }
-              if (!cardCorrelations[card][otherCard]) {
-                cardCorrelations[card][otherCard] = 0;
-              }
-              cardCorrelations[card][otherCard]++;
-            }
-          });
-        });
-      });
-    });
-
-    const correlationData = cardList.map(card1 => 
-      cardList.map(card2 => 
-        (cardCorrelations[card1] && cardCorrelations[card1][card2]) 
-          ? cardCorrelations[card1][card2] / totalUsers 
-          : 0
-      )
-    );
-
-    return { cardList, correlationData };
-  }
-
-  function renderHeatmapChart(data) {
-    const ctx = document.getElementById('heatmapChart').getContext('2d');
-    
-    if (window.heatmapChart instanceof Chart) {
-      window.heatmapChart.destroy();
-    }
-
-    window.heatmapChart = new Chart(ctx, {
-      type: 'matrix',
-      data: {
-        datasets: [{
-          label: 'Correlation Heatmap',
-          data: data.cardList.flatMap((card1, i) =>
-            data.cardList.map((card2, j) => ({
-              x: j,
-              y: i,
-              v: data.correlationData[i][j]
-            }))
-          ),
-          width: ({ chart }) => (chart.chartArea || {}).width / data.cardList.length - 1,
-          height: ({ chart }) => (chart.chartArea || {}).height / data.cardList.length - 1,
-          backgroundColor: ({ dataset, dataIndex, parsed }) => {
-            const alpha = parsed.v;
-            return `rgba(0, 123, 255, ${alpha})`;
-          }
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              title: (context) => `${data.cardList[context[0].parsed.x]} - ${data.cardList[context[0].parsed.y]}`,
-              label: (context) => `Correlation: ${(context.parsed.v * 100).toFixed(2)}%`
-            }
-          }
-        },
-        scales: {
-          x: {
-            type: 'category',
-            position: 'top',
-            labels: data.cardList,
-            ticks: {
-              maxRotation: 90,
-              minRotation: 90
-            }
-          },
-          y: {
-            type: 'category',
-            labels: data.cardList,
-            offset: true
-          }
-        }
-      }
-    });
-  }
-
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('dragstart', function() {
-      draggedItem = card;
-      setTimeout(() => (this.style.opacity = '0.5'), 0);
-    });
-
-    card.addEventListener('dragend', function() {
-      setTimeout(() => (this.style.opacity = ''), 0);
-      draggedItem = null;
-    });
-  });
-
-  document.querySelectorAll('.column').forEach(column => {
-    column.addEventListener('dragover', function(e) {
-      e.preventDefault();
-      this.style.boxShadow = '0 4px 8px rgba(0, 123, 255, 0.5)';
-    });
-
-    column.addEventListener('dragleave', function() {
-      this.style.boxShadow = '';
-    });
-
-    column.addEventListener('drop', function(e) {
-      e.preventDefault();
-      if (draggedItem) {
-        this.appendChild(draggedItem);
-      }
-      this.style.boxShadow = '';
-    });
-  });
-
-  document.querySelectorAll('.card .delete-btn').forEach(btn => {
-    btn.onclick = function(e) {
-      e.stopPropagation();
-      this.parentElement.remove();
-    };
-  });
-
-  document.querySelectorAll('.column .delete-btn').forEach(btn => {
-    btn.onclick = function() {
-      this.parentElement.remove();
-    };
-  });
-});
-</script>
-</body>
-</html>
+      </div
