@@ -145,7 +145,16 @@
 <body>
   <h1>UX Research Card Sorting Exercise</h1>
 
-  <div id="exerciseContent">
+  <!-- P3a67 -->
+  <div id="loginForm">
+    <form id="login">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <div id="exerciseContent" style="display: none;">
     <div class="controls">
       <button id="addCard" class="secondary-btn">+ Add Card</button>
       <button id="addColumn" class="secondary-btn">+ Add Column</button>
@@ -510,6 +519,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
     btn.onclick = function() {
       this.parentElement.remove();
     };
+  });
+
+  // P1e98
+  document.getElementById('login').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const password = document.getElementById('password').value;
+    if (password === 'correct_password') {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('exerciseContent').style.display = 'block';
+    } else {
+      alert('Incorrect password. Please try again.');
+    }
   });
 });
 </script>
